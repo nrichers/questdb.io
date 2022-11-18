@@ -240,7 +240,7 @@ questdb.exe start
 
 :::note
 
-Check the [release note](https://github.com/questdb/questdb/releases) and ensure
+Check the [release notes](https://github.com/questdb/questdb/releases) and ensure
 that necessary [backup](/docs/operations/backup/) is completed.
 
 :::
