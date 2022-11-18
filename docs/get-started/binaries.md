@@ -9,19 +9,37 @@ description:
 import CodeBlock from "@theme/CodeBlock"
 import InterpolateReleaseData from "../../src/components/InterpolateReleaseData"
 
-This page describes how to install and use QuestDB via binaries. QuestDB comes
-with a script `questdb.sh` for Linux/FreeBSD and an executable `questdb.exe` for
-Windows. If you are looking for macOS, please check our
-[Homebrew](/docs/get-started/homebrew) section.
-
-## Download
-
-You can find the latest binaries on the [Get QuestDB](/get-questdb) page. The
-release notes are on our [GitHub release]({@githubUrl@}/releases) page.
+This page describes how to install and run QuestDB via binaries. On Linux or FeeBSD, you run QuestDB with the `questdb.sh` script. On Windows, you run the `questdb.exe` executable. For macOS, check out [Homebrew](/docs/get-started/homebrew).
 
 ## Prerequisites
 
-### "Any (no JVM)" version
+### Java 11
+
+You need to have Java 11 installed locally. To check your installed version:
+
+```shell
+java -version
+```
+
+If you do not have Java installed, install one of the following supported packages for your operating system:
+
+- AdoptOpenJDK
+- Amazon Corretto
+- OpenJDK
+- Oracle Java
+
+Other Java distributions might work but are not tested.
+
+#### `JAVA_HOME`
+
+The environment variable `JAVA_HOME` needs to point to your Java 11 installation
+folder.
+
+## Download the binaries
+
+Download the latest binaries from [Get QuestDB](/get-questdb). For release notes, check [GitHub release]({@githubUrl@}/releases).
+
+### Any (no JVM) version
 
 The file is named:
 
@@ -35,36 +53,9 @@ The file is named:
   }}
 />
 
-This binary is approximately 4MB.
+### QuestDB version
 
-#### Java 11
-
-When using this binary you will need to have Java 11 installed locally. You can
-check which version is already installed on your system with:
-
-```shell
-java -version
-```
-
-If you do not already have Java installed, download and install the package for
-your operating system. We support:
-
-- AdoptOpenJDK
-- Amazon Corretto
-- OpenJDK
-- Oracle Java
-
-Other Java distributions are most likely working but we are not running tests on
-them.
-
-#### `JAVA_HOME`
-
-The environment variable `JAVA_HOME` needs to be set to your JDK's installation
-folder.
-
-### Your operating system version
-
-The file is named:
+Depending on your operating system, the file is named:
 
 <!-- prettier-ignore-start -->
 
@@ -130,20 +121,17 @@ import TabItem from "@theme/TabItem"
 </Tabs>
 
 
-This binary weights around 20MB, this depends on your operating system.
+The Java runtime is packaged directly with QuestDB and you do not need anything else.
 
-When using this binary, you do not need anything on your machine, the Java
-runtime is packaged directly with QuestDB.
-
-## Extract the tarball
+## Extract the tarballs
 
 <!-- prettier-ignore-start -->
 
 <Tabs defaultValue="any" values={[
   { label: "Any (no JVM)", value: "any" },
-  { label: "Linux", value: "linux" },
-  { label: "FreeBSD", value: "bsd" },
-  { label: "Windows", value: "windows" },
+  { label: "QuestDB (Linux)", value: "linux" },
+  { label: "QuestDB (FreeBSD)", value: "bsd" },
+  { label: "QuestDB (Windows)", value: "windows" },
 ]}>
 
 <!-- prettier-ignore-end -->
@@ -214,6 +202,39 @@ runtime is packaged directly with QuestDB.
 
 </Tabs>
 
+## Run QuestDB
+
+!-- prettier-ignore-start -->
+
+<Tabs defaultValue="nix"
+values={[
+  { label: "Linux/FreeBSD", value: "nix" },
+  { label: "Windows", value: "windows" }
+]}>
+
+<!-- prettier-ignore-end -->
+
+<TabItem value="nix">
+
+
+```shell
+./questdb.sh start
+```
+
+</TabItem>
+
+
+<TabItem value="windows">
+
+
+```shell
+questdb.exe start
+```
+
+</TabItem>
+
+
+</Tabs>
 
 ### Upgrade QuestDB version
 
@@ -224,14 +245,13 @@ that necessary [backup](/docs/operations/backup/) is completed.
 
 :::
 
-To upgrade QuestDB version, overwrite the binaries folder with new binaries and
-then restart the instance:
+To upgrade the QuestDB version: stop the instance, overwrite the binaries folder with new binaries, and then restart the instance:
 
 <!-- prettier-ignore-start -->
 
-<Tabs defaultValue="nix" 
-values={[ 
-  { label: "Linux/FreeBSD", value: "nix" }, 
+<Tabs defaultValue="nix"
+values={[
+  { label: "Linux/FreeBSD", value: "nix" },
   { label: "Windows", value: "windows" }
 ]}>
 
@@ -242,6 +262,9 @@ values={[
 
 ```shell
 ./questdb.sh stop
+
+(Perform the upgrade)
+
 ./questdb.sh start
 ```
 
@@ -253,6 +276,9 @@ values={[
 
 ```shell
 questdb.exe stop
+
+(Perform the upgrade)
+
 questdb.exe start
 ```
 
