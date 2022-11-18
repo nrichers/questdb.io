@@ -204,7 +204,7 @@ The Java runtime is packaged directly with QuestDB and you do not need anything 
 
 ## Run QuestDB
 
-!-- prettier-ignore-start -->
+<!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nix"
 values={[
