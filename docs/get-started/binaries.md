@@ -263,7 +263,7 @@ values={[
 ```shell
 ./questdb.sh stop
 
-(Perform the upgrade)
+(Overwrite the binaries folder with new binaries)
 
 ./questdb.sh start
 ```
@@ -277,7 +277,7 @@ values={[
 ```shell
 questdb.exe stop
 
-(Perform the upgrade)
+(Overwrite the binaries folder with new binaries)
 
 questdb.exe start
 ```
