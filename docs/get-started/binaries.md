@@ -9,7 +9,7 @@ description:
 import CodeBlock from "@theme/CodeBlock"
 import InterpolateReleaseData from "../../src/components/InterpolateReleaseData"
 
-This page describes how to install and run QuestDB via binaries. On Linux or FeeBSD, you run QuestDB with the `questdb.sh` script. On Windows, you run the `questdb.exe` executable. For macOS, check out [Homebrew](/docs/get-started/homebrew).
+This page describes how to download and run QuestDB via binaries. QuestDB comes with a `questdb.sh` script on Linux or FreeBSD, and a `questdb.exe` executable on Windows. For macOS, check out [Homebrew](/docs/get-started/homebrew).
 
 ## Prerequisites
 
