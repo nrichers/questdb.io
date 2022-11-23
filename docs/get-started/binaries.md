@@ -39,9 +39,7 @@ folder.
 
 Download the latest binaries from [Get QuestDB](/get-questdb). For release notes, check [GitHub release]({@githubUrl@}/releases).
 
-### Any (no JVM) version
-
-The file is named:
+For no JVM binaries, the filename is:
 
 <InterpolateReleaseData
   renderText={(release) => {
