@@ -129,9 +129,9 @@ The Java runtime is packaged directly with QuestDB and you do not need anything 
 
 <Tabs defaultValue="any" values={[
   { label: "Any (no JVM)", value: "any" },
-  { label: "QuestDB (Linux)", value: "linux" },
-  { label: "QuestDB (FreeBSD)", value: "bsd" },
-  { label: "QuestDB (Windows)", value: "windows" },
+  { label: "Linux", value: "linux" },
+  { label: "FreeBSD", value: "bsd" },
+  { label: "Windows", value: "windows" },
 ]}>
 
 <!-- prettier-ignore-end -->
