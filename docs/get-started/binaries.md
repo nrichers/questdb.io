@@ -51,9 +51,7 @@ For no JVM binaries, the filename is:
   }}
 />
 
-### QuestDB version
-
-Depending on your operating system, the file is named:
+The filename for different operating systems is as the following:
 
 <!-- prettier-ignore-start -->
 
