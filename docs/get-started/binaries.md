@@ -37,28 +37,13 @@ folder.
 
 ## Download the binaries
 
-Download the latest binaries from [Get QuestDB](/get-questdb). For release notes, check [GitHub release]({@githubUrl@}/releases).
-
-For no JVM binaries, the filename is:
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    return (
-      <CodeBlock className="language-shell">
-        {`questdb-${release.name}-no-jre-bin.tar.gz`}
-      </CodeBlock>
-    )
-  }}
-/>
-
-The filename for different operating systems is as the following:
-
 <!-- prettier-ignore-start -->
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs defaultValue="linux" values={[
+<Tabs defaultValue="any" values={[
+  { label: "Any (no JVM)", value: "any" },
   { label: "Linux", value: "linux" },
   { label: "FreeBSD", value: "bsd" },
   { label: "Windows", value: "windows" },
@@ -66,15 +51,29 @@ import TabItem from "@theme/TabItem"
 
 <!-- prettier-ignore-end -->
 
+<TabItem value="any">
+
+
+<InterpolateReleaseData
+  renderText={(release) => {
+    const anynojvmurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-no-jre-bin.tar.gz`
+    return (
+      <div><a href={anynojvmurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-no-jre-bin.tar.gz</a></div>
+    )
+  }}
+/>
+
+</TabItem>
+
+
 <TabItem value="linux">
 
 
 <InterpolateReleaseData
   renderText={(release) => {
+    const linuxurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-rt-linux-amd64.tar.gz`
     return (
-      <CodeBlock className="language-shell">
-        {`questdb-${release.name}-rt-linux-amd64.tar.gz`}
-      </CodeBlock>
+      <div><a href={linuxurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-rt-linux-amd64.tar.gz</a></div>
     )
   }}
 />
@@ -87,10 +86,9 @@ import TabItem from "@theme/TabItem"
 
 <InterpolateReleaseData
   renderText={(release) => {
+    const bsdurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-rt-freebsd-amd64.tar`
     return (
-      <CodeBlock className="language-shell">
-        {`questdb-${release.name}-rt-freebsd-amd64.tar.gz`}
-      </CodeBlock>
+      <div><a href={bsdurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-rt-freebsd-amd64.tar.gz</a></div>
     )
   }}
 />
@@ -103,10 +101,9 @@ import TabItem from "@theme/TabItem"
 
 <InterpolateReleaseData
   renderText={(release) => {
+    const windowsurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-rt-windows-amd64.tar.gz`
     return (
-      <CodeBlock className="language-shell">
-        {`questdb-${release.name}-rt-windows-amd64.tar.gz`}
-      </CodeBlock>
+      <div><a href={windowsurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-rt-windows-amd64.tar.gz</a></div>
     )
   }}
 />
@@ -115,7 +112,6 @@ import TabItem from "@theme/TabItem"
 
 
 </Tabs>
-
 
 The Java runtime is packaged directly with QuestDB and you do not need anything else.
 
