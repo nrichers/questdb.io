@@ -8,6 +8,16 @@ description:
 
 import CodeBlock from "@theme/CodeBlock"
 import InterpolateReleaseData from "../../src/components/InterpolateReleaseData"
+import { getAssets } from '../../src/utils/get-assets'
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+export const platforms = [
+  { label: "Any (no JVM)", value: "noJre" },
+  { label: "Linux", value: "linux" },
+  { label: "FreeBSD", value: "bsd" },
+  { label: "Windows", value: "windows" },
+];
 
 This page describes how to download and run QuestDB via binaries. QuestDB comes with a `questdb.sh` script on Linux or FreeBSD, and a `questdb.exe` executable on Windows. For macOS, check out [Homebrew](/docs/get-started/homebrew).
 
@@ -39,79 +49,28 @@ folder.
 
 <!-- prettier-ignore-start -->
 
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
-
-<Tabs defaultValue="any" values={[
-  { label: "Any (no JVM)", value: "any" },
-  { label: "Linux", value: "linux" },
-  { label: "FreeBSD", value: "bsd" },
-  { label: "Windows", value: "windows" },
-]}>
+<Tabs
+  defaultValue="noJre"
+  values={platforms}
+>
+  {platforms.map((platform) => (
+    <TabItem key={platform} value={platform.value}>
+      <InterpolateReleaseData
+        renderText={(release) => {
+          const assets = getAssets(release)
+          const href = assets[platform.value].href
+          return (
+            <a href={href} rel="noopener noreferrer" target="_blank">
+              {href.split("/").reverse()[0]}
+            </a>
+          )
+        }}
+      />
+    </TabItem>
+  ))}
+</Tabs>
 
 <!-- prettier-ignore-end -->
-
-<TabItem value="any">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    const anynojvmurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-no-jre-bin.tar.gz`
-    return (
-      <div><a href={anynojvmurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-no-jre-bin.tar.gz</a></div>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-<TabItem value="linux">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    const linuxurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-rt-linux-amd64.tar.gz`
-    return (
-      <div><a href={linuxurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-rt-linux-amd64.tar.gz</a></div>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-<TabItem value="bsd">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    const bsdurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-rt-freebsd-amd64.tar`
-    return (
-      <div><a href={bsdurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-rt-freebsd-amd64.tar.gz</a></div>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-<TabItem value="windows">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    const windowsurl = `https://github.com/questdb/questdb/releases/download/${release.name}/questdb-${release.name}-rt-windows-amd64.tar.gz`
-    return (
-      <div><a href={windowsurl} rel="noopener noreferrer" target="_blank">questdb-{release.name}-rt-windows-amd64.tar.gz</a></div>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-</Tabs>
 
 The Java runtime is packaged directly with QuestDB and you do not need anything else.
 
@@ -119,80 +78,25 @@ The Java runtime is packaged directly with QuestDB and you do not need anything 
 
 <!-- prettier-ignore-start -->
 
-<Tabs defaultValue="any" values={[
-  { label: "Any (no JVM)", value: "any" },
-  { label: "Linux", value: "linux" },
-  { label: "FreeBSD", value: "bsd" },
-  { label: "Windows", value: "windows" },
-]}>
+<Tabs defaultValue="noJre" values={platforms}>
+  {platforms.map((platform) => (
+    <TabItem key={platform} value={platform.value}>
+      <InterpolateReleaseData
+        renderText={(release) => {
+          const assets = getAssets(release)
+          const href = assets[platform.value].href
+          return (
+            <CodeBlock className="language-shell">
+              {`tar -xvf ${href.split("/").reverse()[0]}`}
+            </CodeBlock>
+          )
+        }}
+      />
+    </TabItem>
+  ))}
+</Tabs>
 
 <!-- prettier-ignore-end -->
-
-<TabItem value="any">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    return (
-      <CodeBlock className="language-shell">
-        {`tar -xvf questdb-${release.name}-no-jre-bin.tar.gz`}
-      </CodeBlock>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-<TabItem value="linux">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    return (
-      <CodeBlock className="language-shell">
-        {`tar -xvf questdb-${release.name}-rt-linux-amd64.tar.gz`}
-      </CodeBlock>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-<TabItem value="bsd">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    return (
-      <CodeBlock className="language-shell">
-        {`tar -xvf questdb-${release.name}-rt-freebsd-amd64.tar.gz`}
-      </CodeBlock>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-<TabItem value="windows">
-
-
-<InterpolateReleaseData
-  renderText={(release) => {
-    return (
-      <CodeBlock className="language-shell">
-        {`tar -xvf questdb-${release.name}-rt-windows-amd64.tar.gz`}
-      </CodeBlock>
-    )
-  }}
-/>
-
-</TabItem>
-
-
-</Tabs>
 
 ## Run QuestDB
 
